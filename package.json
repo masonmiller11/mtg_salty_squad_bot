@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "This is a bot used to keep track of Commander(EDH) games and players.",
   "main": "index.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devstart": "nodemon index.js"
+    "devstart": "nodemon index.ts"
   },
   "author": "masonmiller",
   "license": "ISC",
@@ -16,11 +16,13 @@
     "discord-api-types": "^0.31.1",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
-    "nodemon": "^2.0.15",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
     "eslint": "^8.13.0",
+    "nodemon": "^2.0.15"
   }
 }
