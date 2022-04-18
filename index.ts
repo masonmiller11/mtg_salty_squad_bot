@@ -1,11 +1,11 @@
-import { Client, Intents, Collection } from 'discord.js';
-import 'dotenv/config';
-import fs from 'node:fs';
-import ping from './src/commands/ping.js';
-import commands from './src/command-collection.js';
+import { Interaction } from "discord.js";
 
+const { Client, Intents } = require('discord.js');
+const { config } = require('dotenv');
+const commands = require('./src/command-collection');
+
+config();
 const token = process.env.DISCORD_TOKEN;
-console.log("TOKEN: " + token);
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -15,7 +15,7 @@ client.once('ready', () => {
 	console.log('ready!');
 })
 
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async (interaction: Interaction) => {
 	if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);
