@@ -1,9 +1,14 @@
-import { Client, Intents, Collection } from 'discord.js';
-import 'dotenv/config';
-import fs from 'node:fs';
-import ping from './commands/ping.js';
+const { Collection } = require('discord.js');
+const fs = require('node:fs');
 
 const commands = new Collection();
-commands.set(ping.data.name, ping);
 
-export default commands;
+const commandFiles = fs.readdirSync('./src/commands')
+	.filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	commands.set(command.data.name, command);
+}
+
+module.exports = commands;

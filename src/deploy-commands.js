@@ -1,23 +1,35 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v9';
-import dotenv from "dotenv"
-import ping from './commands/ping.js';
-
-dotenv.config({ path: '../.env' });
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+require('dotenv').config({ path: '../.env' });
 
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.APP_ID;
 const guildId = process.env.GUILD_ID;
 
-console.log("TOKEN: " + token);
+const commands = [];
+const fs = require('node:fs');
 
-const commands = [
-	ping.data,
-].map(command => command.toJSON());
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	commands.push(command.data.toJSON());
+}
 
 const rest = new REST({ version: '9' }).setToken(token);
 
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
-	.then(() => console.log('Successfully registered application commands.'))
-	.catch(console.error);
+const registerCommands = async () => {
+	try {
+		await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+		console.log('Successfully registered application commands.');
+	} catch {
+		console.error;
+	}
+
+}
+
+registerCommands();
+
+// rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+// 	.then(() => console.log('Successfully registered application commands.'))
+// 	.catch(console.error);

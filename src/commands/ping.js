@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 const ping = {
 	data: new SlashCommandBuilder()
@@ -9,4 +9,4 @@ const ping = {
 	},
 };
 
-export default ping;
+module.exports = ping;
