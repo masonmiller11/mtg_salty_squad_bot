@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const commands = new Collection();
 
 const commandFiles = fs.readdirSync('./src/commands')
-	.filter(file => file.endsWith('.js'));
+	.filter((file: string) => file.endsWith('.ts'));
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -12,3 +12,5 @@ for (const file of commandFiles) {
 }
 
 module.exports = commands;
+
+export {};

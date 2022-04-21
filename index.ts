@@ -1,4 +1,4 @@
-import { Interaction } from "discord.js";
+import { CommandInteraction, Interaction } from "discord.js";
 
 const { Client, Intents } = require('discord.js');
 const { config } = require('dotenv');
@@ -15,7 +15,7 @@ client.once('ready', () => {
 	console.log('ready!');
 })
 
-client.on('interactionCreate', async (interaction: Interaction) => {
+client.on('interactionCreate', async (interaction: CommandInteraction) => {
 	if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);
