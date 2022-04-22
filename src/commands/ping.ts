@@ -14,15 +14,16 @@ const ping: ApplicationCommand = {
 		//ephemeral set to true means only the exector of command can see reply.
 		interaction.reply({ content: 'Pong!' });
 
-		const collector = interaction.channel!.createMessageCollector({ time: 15000 });
+		
+		// const collector = interaction.channel!.createMessageCollector({ time: 15000 });
 
-		collector.on('collect', m => {
-			console.log(`Collected ${m.content}`);
-		});
+		// collector.on('collect', m => {
+		// 	console.log(`Collected ${m.content}`);
+		// });
 
-		collector.on('end', collected => {
-			console.log(`Collected ${collected.size} items`);
-		});
+		// collector.on('end', collected => {
+		// 	console.log(`Collected ${collected.size} items`);
+		// });
 
 	},
 
