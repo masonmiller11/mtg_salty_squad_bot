@@ -5,7 +5,11 @@ const commands = require('../command-collection');
 module.exports = {
 	name: 'interactionCreate',
 	execute: async (interaction: CommandInteraction) => {
+		
 		if (!interaction.isCommand()) return;
+
+		interaction.channel &&
+		console.log(`${interaction.user.tag} in #${interaction.channelId} triggered an interaction.`);
 	
 		const command = commands.get(interaction.commandName);
 	
