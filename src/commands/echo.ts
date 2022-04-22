@@ -1,12 +1,13 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
 
-type ApplicationCommand = {
+
+type Command = {
 	data: any,
 	execute: (interaction: CommandInteraction) => void;
 }
 
-const ping: ApplicationCommand = {
+const ping: Command = {
 	data: new SlashCommandBuilder()
 		.setName('echo')
 		.setDescription('Replies with echo!')

@@ -1,12 +1,13 @@
 import { SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder } from "@discordjs/builders";
 import { CommandInteraction, User } from "discord.js";
 
-type ApplicationCommand = {
+
+type Command = {
 	data: SlashCommandSubcommandsOnlyBuilder,
 	execute: (interaction: CommandInteraction) => void;
 }
 
-const ping: ApplicationCommand = {
+const ping: Command = {
 	data: new SlashCommandBuilder()
 		.setName('info')
 		.setDescription('Get Info About A User!')
@@ -22,7 +23,7 @@ const ping: ApplicationCommand = {
 	async execute(interaction: CommandInteraction) {
 
 		if (interaction.options.getSubcommand() === 'user') {
-			const user: User|null = interaction.options.getUser('target');
+			const user: User | null = interaction.options.getUser('target');
 
 			if (user) {
 				await interaction.reply(`Username: ${user.username}\nID: ${user.id}`);
@@ -31,7 +32,7 @@ const ping: ApplicationCommand = {
 			}
 		} else if (interaction.options.getSubcommand() === 'server') {
 			interaction.guild &&
-			await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+				await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 		}
 
 	}
