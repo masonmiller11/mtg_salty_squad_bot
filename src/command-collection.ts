@@ -1,11 +1,7 @@
-import { Collection, CommandInteraction } from "discord.js";
+import { Collection } from "discord.js";
+import Command from './models/command';
 
 const fs = require('node:fs');
-
-type Command = {
-	data: any,
-	execute: (interaction: CommandInteraction) => void;
-}
 
 const commands: Collection<string, Command> = new Collection();
 
@@ -13,11 +9,10 @@ const commandFiles = fs.readdirSync('./src/commands')
 	.filter((file: string) => file.endsWith('.ts'));
 
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	commands.set(command.data.name, command);
-	//for buttons (button.data.customId, button)
+	const command: Command = require(`./commands/${file}`);
+	commands.set(command.commandData.name, command);
 }
 
 module.exports = commands;
 
-export {};
+export default commands;

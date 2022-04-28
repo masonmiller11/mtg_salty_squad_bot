@@ -1,49 +1,14 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-
-type Command = {
-	data: SlashCommandBuilder,
-	execute: (interaction: CommandInteraction) => void;
-}
+import Command from "../models/command";
 
 const ping: Command = {
-	data: new SlashCommandBuilder()
+	commandData: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
-	async execute(interaction: CommandInteraction) {
+	async executeCommand(interaction: CommandInteraction) {
 		//ephemeral set to true means only the exector of command can see reply.
-		await interaction.reply({ content: 'Pong!' });
-
-		// const collector = interaction.channel!.createMessageCollector({ time: 15000 });
-
-		// collector.on('collect', m => {
-		// 	console.log(`Collected ${m.content}`);
-		// });
-
-		// collector.on('end', collected => {
-		// 	console.log(`Collected ${collected.size} items`);
-		// });
-
-		// await interaction.reply('Pong! Let\'s test additiona input!').then(() => {
-		// 	interaction.followUp('thanks!');
-		// 	console.log('in then...');
-		// 	console.log(interaction.channel);
-
-		// 	const filter = (m: Message) => {
-		// 		console.log('in filter');
-		// 		console.log(interaction.user.id === m.author.id)
-		// 		return interaction.user.id === m.author.id;
-		// 	}
-
-		// 	interaction.channel?.awaitMessages({ filter, time: 6000, max: 1, errors: ['time'] })
-		// 		.then(messages => {
-		// 			console.log('test');
-		// 			interaction.followUp(`You've entered: ${messages.first()!.content}`);
-		// 		})
-		// 		.catch(() => {
-		// 			interaction.followUp('You did not enter any input!');
-		// 		});
-		// });
+		await interaction.reply({ content: 'Pong!', /*ephemeral:true*/ });
 	},
 };
 
