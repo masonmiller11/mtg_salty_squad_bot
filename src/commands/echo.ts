@@ -18,15 +18,36 @@ const ping: Command = {
 		.addStringOption(option =>
 			option.setName('input')
 				.setDescription('The input to echo back')
-				.setRequired(true)),
+				.setRequired(true))
+		.addStringOption(option =>
+			option.setName('format')
+				.setDescription('What Format Are You Playing?')
+				.setRequired(true)
+				.addChoice('EDH','edh')),
+
 	async execute(interaction: CommandInteraction) {
 		// console.log(interaction.options.getUser("winner",true));
 		// await interaction.reply(interaction.options.getUser("winner",true).username);
-		console.log(interaction.options.getString("input",true));
-		await interaction.reply(interaction.options.getString("input",true));
+		console.log(interaction.options.getString("input", true));
+		await interaction.reply(interaction.options.getString("input", true));
+		
 	},
 };
 
 module.exports = ping;
 
-export {};
+export { };
+
+
+
+// interaction.reply('Please enter more input.').then(() => {
+// 	const filter = m => interaction.user.id === m.author.id;
+
+// 	interaction.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
+// 		.then(messages => {
+// 			interaction.followUp(`You've entered: ${messages.first().content}`);
+// 		})
+// 		.catch(() => {
+// 			interaction.followUp('You did not enter any input!');
+// 		});
+// });
