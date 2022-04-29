@@ -1,8 +1,13 @@
 const { Client, Intents } = require('discord.js');
-const { config } = require('dotenv');
 const fs = require('node:fs');
 
+import {config} from 'dotenv';
+
 config();
+
+//Initialize DB
+require('./src/utilities/database')();
+
 const token = process.env.DISCORD_TOKEN;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
