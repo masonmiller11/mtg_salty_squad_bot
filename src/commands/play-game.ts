@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, Message, User } from "discord.js";
 
 import Command from "../models/command";
+import {createGame} from '../services/game-service';
 
 const ping: Command = {
 	commandData: new SlashCommandBuilder()
@@ -44,7 +45,9 @@ const ping: Command = {
 			fourthPlayer && players.push(fourthPlayer);
 			fifthPlayer && players.push(fifthPlayer);
 
-			let response = `Sounds good! The game id# is: COMING SOON. And here's what I've got for players:\n `;
+			const game = createGame(players);
+
+			let response = `Sounds good! The game id# is: ${game.id}. And here's what I've got for players:\n `;
 
 			players.forEach((player, index) => {
 				response = `${response}\nPlayer${index + 1}: ${player.username}`;
