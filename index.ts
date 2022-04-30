@@ -1,6 +1,6 @@
-const { Client, Intents } = require('discord.js');
 const fs = require('node:fs');
 
+import { Client, Intents } from 'discord.js';
 import {config} from 'dotenv';
 
 config();
@@ -10,7 +10,7 @@ require('./src/utilities/database')();
 
 const token = process.env.DISCORD_TOKEN;
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
+export const client: Client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
 
 const eventFiles = fs.readdirSync('./src/events').filter((file: string) => file.endsWith('.ts'));
 
