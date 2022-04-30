@@ -1,4 +1,4 @@
-import { CommandInteraction, SelectMenuInteraction } from "discord.js";
+import { SelectMenuInteraction } from "discord.js";
 
 //TODO create model for SelectMenu
 
@@ -7,6 +7,7 @@ const addCommanders = {
 		'name':'addCommanders'
 	},
 	async executeSelect(interaction: SelectMenuInteraction) {
+		console.log(interaction);
 		await interaction.update({ content: 'Something was selected! Test!', components: [] });
 	}
 }
