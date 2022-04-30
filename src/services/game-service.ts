@@ -7,18 +7,25 @@ type createGame = (players: User[]) =>
 		_id: Types.ObjectId;
 	};
 
-	/**
-	 * Creates game from players.
-	 * @param players 
-	 */
+/**
+ * Creates game from players.
+ * @param players 
+ */
 export const createGame: createGame = (players) => {
 
 	const game = new GameModel();
-	game.playerDiscordIds = players.map(player => player.id);
+
+	game.active = true;
+
+	game.playerCommanderCombatants = players.map((player) => {
+		return {
+			"player": player.id,
+			"commander": null
+		}
+	})
 
 	game.save(function (err: Error) {
 		if (err) console.log(err.message);
-		console.log('Employee saved!');
 	});
 
 	return game;
