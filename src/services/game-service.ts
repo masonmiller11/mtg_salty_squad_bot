@@ -3,10 +3,14 @@ import { GameModel, Game } from "../models/game";
 import { Document, Types } from 'mongoose';
 
 type createGame = (players: User[]) =>
-	Document<unknown, any, Game> & Game & {
+	Document<unknown, Game> & Game & {
 		_id: Types.ObjectId;
 	};
 
+	/**
+	 * Creates game from players.
+	 * @param players 
+	 */
 export const createGame: createGame = (players) => {
 
 	const game = new GameModel();
