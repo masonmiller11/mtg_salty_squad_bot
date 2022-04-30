@@ -1,4 +1,4 @@
-import {Commander} from './commander';
+import {Commander} from './Commander';
 
 export type playerCommanderCombatant = {
 	player: string,

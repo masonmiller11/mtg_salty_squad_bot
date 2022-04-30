@@ -1,5 +1,5 @@
 import { Collection } from "discord.js";
-import {MenuTarget} from './models/menu-target';
+import {MenuTarget} from './models/MenuTarget';
 
 const fs = require('node:fs');
 

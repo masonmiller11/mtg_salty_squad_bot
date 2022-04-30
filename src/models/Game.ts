@@ -1,5 +1,5 @@
 import mongoose, { Schema, model, } from 'mongoose';
-import { playerCommanderCombatant } from './player-commander-combantant';
+import { playerCommanderCombatant } from './PlayerCommanderCombatant';
 
 export type Game = {
 	playerCommanderCombatants: playerCommanderCombatant[],

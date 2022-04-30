@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
-import Command from "../models/command";
+import Command from "../models/Command";
 
 const ping: Command = {
 	commandData: new SlashCommandBuilder()

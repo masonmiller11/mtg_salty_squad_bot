@@ -1,5 +1,5 @@
 import { Collection } from "discord.js";
-import Command from './models/command';
+import Command from './models/Command';
 
 const fs = require('node:fs');
 

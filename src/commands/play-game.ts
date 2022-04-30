@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, User } from "discord.js";
 
-import Command from "../models/command";
+import Command from "../models/Command";
 import { createGame } from '../services/game-service';
 
 const ping: Command = {

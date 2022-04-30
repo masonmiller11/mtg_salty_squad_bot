@@ -1,5 +1,5 @@
 import { APIApplicationCommandGuildInteraction } from "discord-api-types/v10";
-import Command from "./models/command";
+import Command from "./models/Command";
 
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');

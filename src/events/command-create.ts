@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import Command from "../models/command";
+import Command from "../models/Command";
 import commands from "../command-collection";
 
 

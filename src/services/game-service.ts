@@ -1,5 +1,5 @@
 import { User } from "discord.js";
-import { GameModel, Game } from "../models/game";
+import { GameModel, Game } from "../models/Game";
 import { Document, Types } from 'mongoose';
 
 type createGame = (players: User[]) =>

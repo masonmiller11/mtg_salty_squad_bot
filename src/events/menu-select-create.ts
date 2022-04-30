@@ -1,6 +1,6 @@
 import { CommandInteraction } from "discord.js";
 import menus from "../menu-target-collection";
-import {MenuTarget} from '../models/menu-target';
+import {MenuTarget} from '../models/MenuTarget';
 
 
 module.exports = {
