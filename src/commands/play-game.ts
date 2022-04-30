@@ -1,8 +1,8 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { CommandInteraction, Message, User } from "discord.js";
+import { CommandInteraction, User } from "discord.js";
 
 import Command from "../models/command";
-import {createGame} from '../services/game-service';
+import { createGame } from '../services/game-service';
 
 const ping: Command = {
 	commandData: new SlashCommandBuilder()
@@ -29,10 +29,10 @@ const ping: Command = {
 
 		if (interaction.options.getSubcommand() === 'edh') {
 
-			//Get the first two players since we know they are required.
-
+			//Get the first two players. Use null assertion operator since we know they are required.
 			const firstPlayer: User = interaction.options.getUser('player1')!;
 			const secondPlayer: User = interaction.options.getUser('player2')!;
+
 			const thirdPlayer: User | null = interaction.options.getUser('player3');
 			const fourthPlayer: User | null = interaction.options.getUser('player4');
 			const fifthPlayer: User | null = interaction.options.getUser('player5');
