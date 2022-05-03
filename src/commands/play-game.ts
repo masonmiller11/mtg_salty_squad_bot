@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, User } from "discord.js";
 
 import Command from "../models/Command";
-import { createGame } from '../services/game-service';
+import * as GameService from '../services/game-service';
 
 const ping: Command = {
 	commandData: new SlashCommandBuilder()
@@ -45,7 +45,7 @@ const ping: Command = {
 			fourthPlayer && players.push(fourthPlayer);
 			fifthPlayer && players.push(fifthPlayer);
 
-			const game = createGame(players);
+			const game = GameService.createGame(players);
 
 			let response = `Sounds good! The game id# is: ${game.id}. And here's what I've got for players:\n `;
 

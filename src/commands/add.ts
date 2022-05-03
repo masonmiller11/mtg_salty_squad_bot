@@ -1,8 +1,9 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { CommandInteraction, MessageActionRow, MessageSelectMenu, User } from "discord.js";
+import { CommandInteraction, MessageActionRow, MessageSelectMenu, MessageSelectOptionData, User } from "discord.js";
 
 import Command from "../models/Command";
-import { createGame } from '../services/game-service';
+import * as GameService from '../services/game-service';
+import * as UserService from '../services/user-service';
 
 const ping: Command = {
 	commandData: new SlashCommandBuilder()
@@ -20,26 +21,34 @@ const ping: Command = {
 
 		if (interaction.options.getSubcommand() === 'commanders') {
 
+			const games = await GameService.getAllActive();
+
+			const messageOptionsPromise = games.map(async (game) => {
+
+				const playerNames = game.playerCommanderCombatants.map(async (combatant) => {
+					return (await UserService.getUser(combatant.player)).username;
+				});
+
+				const playerNamesResolvedPromise = await Promise.all(playerNames);
+
+				return {
+					label: `Game Id: ${game.id}`,
+					description: `Players: ${playerNamesResolvedPromise.join(', ')}`,
+					value: game.id
+				}
+			});
+
+			const messageOptions = await Promise.all(messageOptionsPromise);
+
 			const row = new MessageActionRow()
 				.addComponents(
 					new MessageSelectMenu()
 						.setCustomId('addCommanders')
 						.setPlaceholder('Nothing selected')
-						.addOptions([
-							{
-								label: 'Select me',
-								description: 'This is a description',
-								value: 'first_option',
-							},
-							{
-								label: 'You can select me too',
-								description: 'This is also a description',
-								value: 'second_option',
-							},
-						]),
+						.addOptions(messageOptions),
 				);
 
-			await interaction.reply({ content: 'Pong!', components: [row] });
+			await interaction.reply({ content: 'Which game do you want to add commanders to?', components: [row] });
 
 			console.log('add commanders')
 
@@ -52,5 +61,3 @@ const ping: Command = {
 };
 
 module.exports = ping;
-
-export { };
