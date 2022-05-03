@@ -12,7 +12,7 @@ const token = process.env.DISCORD_TOKEN;
 
 export const client: Client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
 
-const eventFiles = fs.readdirSync('./events').filter((file: string) => file.endsWith('.ts'));
+const eventFiles = fs.readdirSync('./src/events').filter((file: string) => file.endsWith('.ts'));
 
 for (const file of eventFiles) {
 	const event = require(`./src/events/${file}`);

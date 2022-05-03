@@ -5,7 +5,7 @@ const fs = require('node:fs');
 
 const commands: Collection<string, Command> = new Collection();
 
-const commandFiles = fs.readdirSync('./commands')
+const commandFiles = fs.readdirSync('./src/commands')
 	.filter((file: string) => file.endsWith('.ts'));
 
 for (const file of commandFiles) {

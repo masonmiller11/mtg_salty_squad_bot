@@ -1,5 +1,5 @@
 import { APIApplicationCommandGuildInteraction } from "discord-api-types/v10";
-import Command from "./models/Command";
+import Command from "./src/models/Command";
 
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
@@ -12,10 +12,10 @@ const guildId = process.env.GUILD_ID;
 const commands:APIApplicationCommandGuildInteraction[] = [];
 const fs = require('node:fs');
 
-const commandFilesToDeploy:string[] = fs.readdirSync('./commands').filter((file: string) => file.endsWith('.ts'));
+const commandFilesToDeploy:string[] = fs.readdirSync('./src/commands').filter((file: string) => file.endsWith('.ts'));
 
 for (const file of commandFilesToDeploy) {
-	const command:Command = require(`./commands/${file}`);
+	const command:Command = require(`./src/commands/${file}`);
 	commands.push(command.commandData.toJSON() as any);
 }
 
