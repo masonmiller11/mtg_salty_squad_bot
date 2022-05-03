@@ -10,9 +10,7 @@ const commandFiles = fs.readdirSync('./src/commands')
 
 for (const file of commandFiles) {
 	const command: Command = require(`./commands/${file}`);
-	console.log(file);
-	console.log(command.commandData.name);
-	commands.set(command.commandData.name, command);
+	commands.set(command.commandData?.name, command);
 }
 
 module.exports = commands;
