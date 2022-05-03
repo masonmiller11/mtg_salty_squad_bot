@@ -4,7 +4,7 @@ import { CommandInteraction, User } from "discord.js";
 import Command from "../models/Command";
 import * as GameService from '../services/game-service';
 
-const ping: Command = {
+const playGame: Command = {
 	commandData: new SlashCommandBuilder()
 		.setName('play')
 		.setDescription('Start a game using the salty bot.')
@@ -62,9 +62,9 @@ const ping: Command = {
 	}
 };
 
-module.exports = ping;
+module.exports = playGame;
 
-export { };
+export default playGame;
 
 
 //Stashing this to use with /logCommanders.

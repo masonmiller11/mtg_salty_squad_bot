@@ -5,7 +5,7 @@ import Command from "../models/Command";
 import * as GameService from '../services/game-service';
 import * as UserService from '../services/user-service';
 
-const ping: Command = {
+const add: Command = {
 	commandData: new SlashCommandBuilder()
 		.setName('add')
 		.setDescription('Add players and commanders to active games.')
@@ -53,11 +53,10 @@ const ping: Command = {
 			console.log('add commanders')
 
 		}
-		// else if (interaction.options.getSubcommand() === 'sealed') {
-		// 	console.log('This should not be possible.');
-		// }
 
 	}
 };
 
-module.exports = ping;
+module.exports = add;
+
+export default add

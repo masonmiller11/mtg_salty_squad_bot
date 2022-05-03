@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
 import Command from "../models/Command";
 
-const ping: Command = {
+const echo: Command = {
 	commandData: new SlashCommandBuilder()
 		.setName('echo')
 		.setDescription('Replies with echo!')
@@ -32,6 +32,6 @@ const ping: Command = {
 	},
 };
 
-module.exports = ping;
+module.exports = echo;
 
-export { };
+export default echo;
