@@ -1,6 +1,6 @@
 import { User } from "discord.js";
 import { GameModel, Game } from "../models/Game";
-import { Document, Types, Query } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 type createGame = (players: User[]) =>
 	Document<unknown, Game> & Game & {
@@ -12,6 +12,10 @@ type getAllActive = () =>
 		_id: Types.ObjectId;
 	})[]>;
 
+type getGame = (id: string) => Promise<(Document<unknown, any, Game> & Game & {
+    _id: Types.ObjectId;
+}) | null>
+
 //todo These returns should return models instead of Documents so that we can
 //switch out databases in the future if needed. 
 
@@ -22,7 +26,6 @@ type getAllActive = () =>
 export const createGame: createGame = (players) => {
 
 	const game = new GameModel();
-
 	game.active = true;
 
 	game.playerCommanderCombatants = players.map((player) => {

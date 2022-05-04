@@ -63,22 +63,3 @@ const playGame: Command = {
 };
 
 module.exports = playGame;
-
-export default playGame;
-
-
-//Stashing this to use with /logCommanders.
-//logCommanders will get a list of active games from the database and present the options in a drop down.
-
-/*interaction.reply(response).then(() => {
-
-	const filter = (message: Message) => interaction.user.id === message.author.id;
-
-	interaction.channel && interaction.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
-		.then(messages => {
-			interaction.followUp(`You've entered: ${messages.first()!.content}`);
-		})
-		.catch(() => {
-			interaction.followUp('You did not enter any input!');
-		});
-});*/
