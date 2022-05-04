@@ -5,6 +5,12 @@ type getPlayerNames = (playerCommanderCombatants: PlayerCommanderCombatant[]) =>
 
 type getPlayerName = (playerCommanderCombatant: PlayerCommanderCombatant) => Promise<string>;
 
+
+/**
+ * Consumes an array of PlayerCommanderCombatants and returns an array of player names.
+ * @param playerCommanderCombatants 
+ * @returns 
+ */
 export const getPlayerNames: getPlayerNames = async (playerCommanderCombatants) => {
 
 	const playerNames = playerCommanderCombatants.map(async (combatant) => {
