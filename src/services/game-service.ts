@@ -40,6 +40,11 @@ export const createGame: createGame = (players) => {
 
 }
 
+export const getGame: getGame = async (id: string) => {
+	const game = await GameModel.findById(id);
+	return game;
+}
+
 export const getAllActive: getAllActive = async () => {
 	const games = await GameModel.find({ active: true });
 	return games;
