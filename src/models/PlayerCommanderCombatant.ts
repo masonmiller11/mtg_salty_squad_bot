@@ -1,6 +1,6 @@
 import {Commander} from './Commander';
 
-export type playerCommanderCombatant = {
+export type PlayerCommanderCombatant = {
 	player: string,
 	commander: Commander|null
 }

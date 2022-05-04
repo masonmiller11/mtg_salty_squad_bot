@@ -1,8 +1,8 @@
 import mongoose, { Schema, model, } from 'mongoose';
-import { playerCommanderCombatant } from './PlayerCommanderCombatant';
+import { PlayerCommanderCombatant } from './PlayerCommanderCombatant';
 
 export type Game = {
-	playerCommanderCombatants: playerCommanderCombatant[],
+	playerCommanderCombatants: PlayerCommanderCombatant[],
 	active: boolean
 }
 
