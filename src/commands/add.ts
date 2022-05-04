@@ -1,9 +1,10 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { CommandInteraction, MessageActionRow, MessageSelectMenu, MessageSelectOptionData, User } from "discord.js";
+import { CommandInteraction, MessageActionRow, MessageSelectMenu } from "discord.js";
 
 import Command from "../models/Command";
 import * as GameService from '../services/game-service';
 import * as UserService from '../services/user-service';
+import * as CombatantService from '../services/combatant-service';
 
 const add: Command = {
 	commandData: new SlashCommandBuilder()
@@ -25,15 +26,11 @@ const add: Command = {
 
 			const messageOptionsPromise = games.map(async (game) => {
 
-				const playerNames = game.playerCommanderCombatants.map(async (combatant) => {
-					return (await UserService.getUser(combatant.player)).username;
-				});
-
-				const playerNamesResolvedPromise = await Promise.all(playerNames);
+				const combatantsWithPlayerNames = await CombatantService.getPlayerNames(game.playerCommanderCombatants);
 
 				return {
 					label: `Game Id: ${game.id}`,
-					description: `Players: ${playerNamesResolvedPromise.join(', ')}`,
+					description: `Players: ${combatantsWithPlayerNames.join(', ')}`,
 					value: game.id
 				}
 			});
@@ -59,4 +56,4 @@ const add: Command = {
 
 module.exports = add;
 
-export default add
+export default add;
