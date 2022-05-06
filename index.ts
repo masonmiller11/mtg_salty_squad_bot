@@ -1,7 +1,9 @@
-const fs = require('node:fs');
-
 import { Client, Intents } from 'discord.js';
 import {config} from 'dotenv';
+import commandCreate from './src/events/command-create';
+import menuSelecCreate from './src/events/menu-select-create';
+import messageCreate from './src/events/message-create'
+import ready from './src/events/ready';
 
 config();
 
@@ -12,15 +14,9 @@ const token = process.env.DISCORD_TOKEN;
 
 export const client: Client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
 
-const eventFiles = fs.readdirSync('./src/events').filter((file: string) => file.endsWith('.ts'));
-
-for (const file of eventFiles) {
-	const event = require(`./src/events/${file}`);
-	if (event.once) {
-		client.once(event.name, (...args: any) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args: any) => event.execute(...args));
-	}
-}
+client.on('interactionCreate', (args:any) => commandCreate(args));
+client.on('interactionCreate', (args:any) => menuSelecCreate(args));
+client.on('messageCreate', (args) => messageCreate(args));
+client.once('ready', (args) => ready(args));
 
 client.login(token);
