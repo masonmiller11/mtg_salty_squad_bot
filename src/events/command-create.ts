@@ -1,6 +1,6 @@
 import { CommandInteraction } from "discord.js";
 import Command from "../models/Command";
-import commands from "../command-collection";
+import commandCollection from "../command-collection";
 
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 		
 		console.log(`${interaction.user.tag} in #${interaction.channelId} triggered an interaction.`);
 	
-		const command:Command|undefined = commands.get(interaction.commandName);
+		const command:Command|undefined = commandCollection.get(interaction.commandName);
 	
 		if (!command) return;
 	
