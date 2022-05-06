@@ -12,6 +12,4 @@ commandCollection.set(playGame.commandData.name, playGame);
 commandCollection.set(set.commandData.name, set);
 commandCollection.set(stats.commandData.name, stats);
 
-module.exports = commandCollection;
-
 export default commandCollection;
