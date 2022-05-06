@@ -63,4 +63,4 @@ const playGame: Command = {
 	}
 };
 
-module.exports = playGame;
+export default playGame;

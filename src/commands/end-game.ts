@@ -48,6 +48,4 @@ const end: Command = {
 	}
 };
 
-module.exports = end;
-
 export default end;

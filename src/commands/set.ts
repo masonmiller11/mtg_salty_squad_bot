@@ -58,6 +58,4 @@ const set: Command = {
 	}
 };
 
-module.exports = set;
-
 export default set;

@@ -43,4 +43,4 @@ const stats: Command = {
 	}
 };
 
-module.exports = stats;
+export default stats;
