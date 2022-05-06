@@ -10,14 +10,9 @@ module.exports = {
 		if (!interaction.isSelectMenu()) return;
 		
 		console.log('menu selected!');
-
 		const menu:MenuTarget|undefined = menus.get(interaction.customId);
 
 		if (!menu) return;
-
-		// if (interaction.customId === 'addCommanders') {
-		// 	await interaction.update({ content: 'Something was selected!', components: [] });
-		// }
 
 		try {
 			await menu.executeSelect(interaction);
