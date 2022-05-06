@@ -1,9 +1,9 @@
-import { CommandInteraction } from "discord.js";
+import { CommandInteraction, Interaction } from "discord.js";
 
 import menuCollection from "../menu-target-collection";
 import { MenuTarget } from '../models/MenuTarget';
 
-const menuSelectCreate = async (interaction: CommandInteraction) => {
+const menuSelectCreate = async (interaction: Interaction) => {
 
 	if (!interaction.isSelectMenu()) return;
 

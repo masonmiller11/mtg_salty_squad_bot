@@ -1,8 +1,8 @@
-import { CommandInteraction } from "discord.js";
+import { Interaction } from "discord.js";
 import Command from "../models/Command";
 import commandCollection from "../command-collection";
 
-const commandCreate =  async(interaction: CommandInteraction) => {
+const commandCreate = async (interaction: Interaction) => {
 
 	if (!interaction.isCommand()) return;
 
