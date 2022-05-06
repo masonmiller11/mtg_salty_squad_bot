@@ -29,31 +29,32 @@ const playGame: Command = {
 
 		if (interaction.options.getSubcommand() === 'edh') {
 
-			//Get the first two players. Use null assertion operator since we know they are required.
-			const firstPlayer: User = interaction.options.getUser('player1')!;
-			const secondPlayer: User = interaction.options.getUser('player2')!;
+			const players: User[] = [];
 
-			const thirdPlayer: User | null = interaction.options.getUser('player3');
-			const fourthPlayer: User | null = interaction.options.getUser('player4');
-			const fifthPlayer: User | null = interaction.options.getUser('player5');
+			for (let i = 1; i < 6; i++) {
+				const player: User | null = interaction.options.getUser('player' + i);
+				player && players.push(player);
+			}
 
-			const players: User[] = [
-				firstPlayer, secondPlayer
-			];
+			//You can't add a single player more than once so create a set and compare against players.length. 
+			const uniqueIds = new Set(players.map(player => player.id));
 
-			thirdPlayer && players.push(thirdPlayer);
-			fourthPlayer && players.push(fourthPlayer);
-			fifthPlayer && players.push(fifthPlayer);
+			if ([...uniqueIds].length != players.length)
+				interaction.reply(
+					'You cannot add a player more than once. Game was not created'
+				);
 
-			const game = GameService.createGame(players);
+			else {
+				const game = GameService.createGame(players);
 
-			let response = `Sounds good! The game id# is: ${game.id}. And here's what I've got for players:\n `;
+				let response = `Sounds good! The game id# is: ${game.id}. And here's what I've got for players:\n `;
 
-			players.forEach((player, index) => {
-				response = `${response}\nPlayer${index + 1}: ${player.username}`;
-			});
+				players.forEach((player, index) => {
+					response = `${response}\nPlayer${index + 1}: ${player.username}`;
+				});
 
-			interaction.reply(response);
+				interaction.reply(response);
+			}
 
 		} else if (interaction.options.getSubcommand() === 'sealed') {
 			await interaction.reply('Sealed not supported yet!');
