@@ -6,6 +6,7 @@ import * as GameService from '../services/game-service';
 import * as CombatantService from '../services/combatant-service';
 
 const set: Command = {
+
 	commandData: new SlashCommandBuilder()
 		.setName('set')
 		.setDescription('Add players and commanders to active games.')
@@ -17,6 +18,7 @@ const set: Command = {
 
 			return subcommand;
 		}),
+
 	async executeCommand(interaction: CommandInteraction) {
 
 		if (interaction.options.getSubcommand() === 'commanders') {
@@ -25,7 +27,7 @@ const set: Command = {
 
 			if (games.length === 0) {
 				await interaction.reply({ content: 'There are no active games! Use /play to create a game!' });
-				return
+				return;
 			}
 
 			const messageOptionsPromise = games.map(async (game) => {
@@ -37,6 +39,7 @@ const set: Command = {
 					description: `Players: ${playerNames.join(', ')}`,
 					value: game.id
 				}
+
 			});
 
 			const messageOptions = await Promise.all(messageOptionsPromise);
@@ -50,8 +53,6 @@ const set: Command = {
 				);
 
 			await interaction.reply({ content: 'Which game do you want to set commanders for?', components: [row] });
-
-			console.log('add commanders')
 
 		}
 

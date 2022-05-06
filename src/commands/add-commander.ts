@@ -4,6 +4,8 @@ import { CommandInteraction } from "discord.js";
 import Command from "../models/Command";
 import * as CommanderService from '../services/commander-service';
 
+type resultsType = { commandersNotSaved: string[], commandersSaved: string[] };
+
 const addCommander: Command = {
 	
 	commandData: new SlashCommandBuilder()
@@ -33,8 +35,6 @@ const addCommander: Command = {
 				const commander: string | null = interaction.options.getString('commander' + i);
 				commander && commanders.push(commander);
 			}
-
-			type resultsType = { commandersNotSaved: string[], commandersSaved: string[] };
 
 			const results: resultsType = await commanders.reduce(async (accP: Promise<resultsType>, commanderName: string) => {
 

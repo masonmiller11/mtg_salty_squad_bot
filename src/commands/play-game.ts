@@ -5,6 +5,7 @@ import Command from "../models/Command";
 import * as GameService from '../services/game-service';
 
 const playGame: Command = {
+
 	commandData: new SlashCommandBuilder()
 		.setName('play')
 		.setDescription('Start a game using the salty bot.')
@@ -25,6 +26,7 @@ const playGame: Command = {
 			subcommand
 				.setName('sealed')
 				.setDescription('Coming soon!')),
+
 	async executeCommand(interaction: CommandInteraction) {
 
 		if (interaction.options.getSubcommand() === 'edh') {
@@ -40,9 +42,7 @@ const playGame: Command = {
 			const uniqueIds = new Set(players.map(player => player.id));
 
 			if ([...uniqueIds].length != players.length)
-				interaction.reply(
-					'You cannot add a player more than once. Game was not created'
-				);
+				interaction.reply('You cannot add a player more than once. Game was not created');
 
 			else {
 				const game = GameService.createGame(players);
@@ -59,7 +59,6 @@ const playGame: Command = {
 		} else if (interaction.options.getSubcommand() === 'sealed') {
 			await interaction.reply('Sealed not supported yet!');
 		}
-
 	}
 };
 
