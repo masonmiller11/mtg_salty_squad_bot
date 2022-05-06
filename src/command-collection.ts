@@ -1,18 +1,17 @@
 import { Collection } from "discord.js";
 import Command from './models/Command';
+import addCommander from "./commands/add-commander";
+import playGame from "./commands/play-game";
+import set from "./commands/set";
+import stats from "./commands/stats";
 
-const fs = require('node:fs');
+const commandCollection: Collection<string, Command> = new Collection();
 
-const commands: Collection<string, Command> = new Collection();
+commandCollection.set(addCommander.commandData.name, addCommander);
+commandCollection.set(playGame.commandData.name, playGame);
+commandCollection.set(set.commandData.name, set);
+commandCollection.set(stats.commandData.name, stats);
 
-const commandFiles = fs.readdirSync('./src/commands')
-	.filter((file: string) => file.endsWith('.ts'));
+module.exports = commandCollection;
 
-for (const file of commandFiles) {
-	const command: Command = require(`./commands/${file}`);
-	commands.set(command.commandData?.name, command);
-}
-
-module.exports = commands;
-
-export default commands;
+export default commandCollection;
