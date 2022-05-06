@@ -3,12 +3,11 @@ import { CommandInteraction, MessageActionRow, MessageSelectMenu } from "discord
 
 import Command from "../models/Command";
 import * as GameService from '../services/game-service';
-import * as UserService from '../services/user-service';
 import * as CombatantService from '../services/combatant-service';
 
-const add: Command = {
+const set: Command = {
 	commandData: new SlashCommandBuilder()
-		.setName('add')
+		.setName('set')
 		.setDescription('Add players and commanders to active games.')
 		.addSubcommand((subcommand) => {
 
@@ -24,13 +23,18 @@ const add: Command = {
 
 			const games = await GameService.getAllActive();
 
+			if (games.length === 0) {
+				await interaction.reply({ content: 'There are no active games! Use /play to create a game!' });
+				return
+			}
+
 			const messageOptionsPromise = games.map(async (game) => {
 
-				const combatantsWithPlayerNames = await CombatantService.getPlayerNames(game.playerCommanderCombatants);
+				const playerNames = await CombatantService.getPlayerNames(game.playerCommanderCombatants);
 
 				return {
 					label: `Game Id: ${game.id}`,
-					description: `Players: ${combatantsWithPlayerNames.join(', ')}`,
+					description: `Players: ${playerNames.join(', ')}`,
 					value: game.id
 				}
 			});
@@ -40,12 +44,12 @@ const add: Command = {
 			const row = new MessageActionRow()
 				.addComponents(
 					new MessageSelectMenu()
-						.setCustomId('addCommanders')
+						.setCustomId('setCommanders')
 						.setPlaceholder('Nothing selected')
 						.addOptions(messageOptions),
 				);
 
-			await interaction.reply({ content: 'Which game do you want to add commanders to?', components: [row] });
+			await interaction.reply({ content: 'Which game do you want to set commanders for?', components: [row] });
 
 			console.log('add commanders')
 
@@ -54,6 +58,6 @@ const add: Command = {
 	}
 };
 
-module.exports = add;
+module.exports = set;
 
-export default add;
+export default set;
