@@ -49,6 +49,4 @@ const setWinner = {
 	}
 }
 
-module.exports = setWinner;
-
-export { };
+export default setWinner;

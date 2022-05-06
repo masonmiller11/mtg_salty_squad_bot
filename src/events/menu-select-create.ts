@@ -1,7 +1,7 @@
 import { CommandInteraction } from "discord.js";
-import menus from "../menu-target-collection";
-import {MenuTarget} from '../models/MenuTarget';
 
+import menuCollection from "../menu-target-collection";
+import {MenuTarget} from '../models/MenuTarget';
 
 module.exports = {
 	name: 'interactionCreate',
@@ -9,8 +9,7 @@ module.exports = {
 		
 		if (!interaction.isSelectMenu()) return;
 		
-		console.log('menu selected!');
-		const menu:MenuTarget|undefined = menus.get(interaction.customId);
+		const menu:MenuTarget|undefined = menuCollection.get(interaction.customId);
 
 		if (!menu) return;
 

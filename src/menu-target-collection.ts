@@ -1,18 +1,16 @@
 import { Collection } from "discord.js";
 import {MenuTarget} from './models/MenuTarget';
+import assignCommander from "./menu-targets/assign-commander";
+import assignWinner from "./menu-targets/assign-winner";
+import setCommanders from "./menu-targets/set-commanders";
+import setWinner from "./menu-targets/set-winner";
 
-const fs = require('node:fs');
 
-const menus: Collection<string, MenuTarget> = new Collection();
+const menuCollection: Collection<string, MenuTarget> = new Collection();
 
-const menuFiles = fs.readdirSync('./src/menu-targets')
-	.filter((file: string) => file.endsWith('.ts'));
+menuCollection.set(assignCommander.menuData.name, assignCommander);
+menuCollection.set(assignWinner.menuData.name, assignWinner);
+menuCollection.set(setCommanders.menuData.name, setCommanders);
+menuCollection.set(setWinner.menuData.name, setWinner);
 
-for (const file of menuFiles) {
-	const menu: MenuTarget = require(`./menu-targets/${file}`);
-	menus.set(menu.menuData.name, menu);
-}
-
-module.exports = menus;
-
-export default menus;
+export default menuCollection;

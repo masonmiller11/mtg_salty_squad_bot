@@ -48,6 +48,4 @@ const assignCommander = {
 	}
 }
 
-module.exports = assignCommander;
-
-export { };
+export default assignCommander;

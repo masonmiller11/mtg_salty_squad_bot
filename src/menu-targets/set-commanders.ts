@@ -5,7 +5,7 @@ import { Commander } from '../models/Commander';
 
 //TODO create model for SelectMenu
 
-const addCommanders = {
+const setCommanders = {
 	menuData: {
 		'name': 'setCommanders'
 	},
@@ -50,6 +50,4 @@ const addCommanders = {
 	}
 }
 
-module.exports = addCommanders;
-
-export { };
+export default setCommanders;
