@@ -29,7 +29,7 @@ const stats: Command = {
 			const gamesWon = await GameService.getGamesWon(player.id);
 			const gamesPlayed = await GameService.getGamesPlayed(player.id);
 
-			const percentageWon =  (100 * gamesWon.length) / gamesPlayed.length;
+			const percentageWon =  (Math.round(100 * gamesWon.length) / gamesPlayed.length).toFixed(2);
 
 			const response = `${player.username} has won ${gamesWon.length}/${gamesPlayed.length} game(s). Winrate: ${percentageWon}%.`;
 
