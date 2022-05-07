@@ -1,10 +1,13 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { CommandInteraction, User } from "discord.js";
+import { CommandInteraction } from "discord.js";
 
 import Command from "../models/Command";
 import * as CommanderService from '../services/commander-service';
 
+type resultsType = { commandersNotSaved: string[], commandersSaved: string[] };
+
 const addCommander: Command = {
+	
 	commandData: new SlashCommandBuilder()
 		.setName('add')
 		.setDescription('Add items to database.')
@@ -18,9 +21,10 @@ const addCommander: Command = {
 				.addStringOption(option => option.setName('commander3').setDescription('Enter the commander name here.').setRequired(false))
 				.addStringOption(option => option.setName('commander4').setDescription('Enter the commander name here.').setRequired(false))
 				.addStringOption(option => option.setName('commander5').setDescription('Enter the commander name here.').setRequired(false))
-
 			return subcommand;
+			
 		}),
+		
 	async executeCommand(interaction: CommandInteraction) {
 
 		if (interaction.options.getSubcommand() === 'commander') {
@@ -31,8 +35,6 @@ const addCommander: Command = {
 				const commander: string | null = interaction.options.getString('commander' + i);
 				commander && commanders.push(commander);
 			}
-
-			type resultsType = { commandersNotSaved: string[], commandersSaved: string[] };
 
 			const results: resultsType = await commanders.reduce(async (accP: Promise<resultsType>, commanderName: string) => {
 
@@ -66,4 +68,4 @@ const addCommander: Command = {
 	}
 };
 
-module.exports = addCommander;
+export default addCommander;

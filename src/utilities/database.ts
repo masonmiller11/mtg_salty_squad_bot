@@ -1,5 +1,5 @@
 const { connect, connection } = require('mongoose');
-import {config} from 'dotenv';
+import { config } from 'dotenv';
 
 const database = () => {
 	config(); //invoking the dotenv config here

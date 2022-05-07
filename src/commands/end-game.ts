@@ -6,9 +6,11 @@ import * as GameService from '../services/game-service';
 import * as CombatantService from '../services/combatant-service';
 
 const end: Command = {
+
 	commandData: new SlashCommandBuilder()
 		.setName('end-game')
 		.setDescription('Set a game as inactive and pick a winner!'),
+
 	async executeCommand(interaction: CommandInteraction) {
 
 		const games = await GameService.getAllActive();
@@ -27,6 +29,7 @@ const end: Command = {
 				description: `Players: ${playerNames.join(', ')}`,
 				value: game.id
 			}
+
 		});
 
 		const messageOptions = await Promise.all(messageOptionsPromise);
@@ -41,13 +44,7 @@ const end: Command = {
 
 		await interaction.reply({ content: 'Which game do you want to pick a winner for?', components: [row] });
 
-		console.log('add commanders')
-
-
-
 	}
 };
-
-module.exports = end;
 
 export default end;

@@ -1,25 +1,19 @@
-import { SelectMenuInteraction, MessageActionRow, MessageSelectMenu, User, Message } from "discord.js";
+import { SelectMenuInteraction } from "discord.js";
+
 import * as GameService from '../services/game-service';
-import * as CombatantService from '../services/combatant-service';
-import { Commander } from '../models/Commander';
 import * as UserService from '../services/user-service';
-import * as CommanderService from '../services/commander-service';
+import { MenuTarget } from '../models/MenuTarget';
+import { CombatantMenuData } from '../models/CombatantMenuData'
 
-//TODO create model for SelectMenu
+const assignWinner: MenuTarget = {
 
-type data = {
-	gameId: string,
-	playerId: string,
-	index: string,
-}
-
-const assignWinner = {
 	menuData: {
 		'name': 'assignWinner'
 	},
+	
 	async executeSelect(interaction: SelectMenuInteraction) {
 
-		const data:data = JSON.parse(interaction.values[0]);
+		const data: CombatantMenuData = JSON.parse(interaction.values[0]);
 
 		GameService.setWinner(data.gameId, data.playerId);
 		GameService.setInactive(data.gameId);
@@ -31,6 +25,4 @@ const assignWinner = {
 	}
 }
 
-module.exports = assignWinner;
-
-export { };
+export default assignWinner;

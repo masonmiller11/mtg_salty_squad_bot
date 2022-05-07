@@ -1,28 +1,20 @@
-import { SelectMenuInteraction, MessageActionRow, MessageSelectMenu, User, Message } from "discord.js";
+import { SelectMenuInteraction, Message } from "discord.js";
+
 import * as GameService from '../services/game-service';
-import * as CombatantService from '../services/combatant-service';
-import { Commander } from '../models/Commander';
 import * as UserService from '../services/user-service';
 import * as CommanderService from '../services/commander-service';
+import { MenuTarget } from '../models/MenuTarget';
+import { CombatantMenuData } from '../models/CombatantMenuData'
 
-//TODO create model for SelectMenu
+const assignCommander: MenuTarget = {
 
-type data = {
-	gameId: string,
-	playerId: string,
-	index: string,
-}
-
-const assignCommander = {
 	menuData: {
 		'name': 'assignCommanderToPlayer'
 	},
+	
 	async executeSelect(interaction: SelectMenuInteraction) {
 
-		const data = JSON.parse(interaction.values[0]);
-
-		console.log(data);
-		console.log(data.playerId);
+		const data: CombatantMenuData = JSON.parse(interaction.values[0]);
 
 		const user = await UserService.getUser(data.playerId);
 
@@ -30,24 +22,25 @@ const assignCommander = {
 
 		const filter = (m: Message) => interaction.user.id === m.author.id;
 
-		interaction.channel!.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
-			.then(async messages => {
-				const commander = await CommanderService.searchCommanderByName(messages.first()!.content);
+		if (interaction.channel) {
 
-				if (commander) GameService.addCommander(data.gameId, data.playerId, commander);
+			interaction.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
+				.then(async messages => {
+					const commander = await CommanderService.searchCommanderByName(messages.first()!.content);
 
-				interaction.followUp(commander ? `Got it! Setting ${messages.first()!.content} as ${user.username}'s commander.` :
-					`Could not find commander: ${messages.first()!.content}`);
+					if (commander) GameService.addCommander(data.gameId, data.playerId, commander);
 
-			})
-			.catch(() => {
-				interaction.followUp('You did not enter any input!');
-			});
+					interaction.followUp(commander ? `Got it! Setting ${messages.first()!.content} as ${user.username}'s commander.` :
+						`Could not find commander: ${messages.first()!.content}`);
 
+				})
+				.catch(() => {
+					interaction.followUp('You did not enter any input!');
+				});
+
+		}
 
 	}
 }
 
-module.exports = assignCommander;
-
-export { };
+export default assignCommander;

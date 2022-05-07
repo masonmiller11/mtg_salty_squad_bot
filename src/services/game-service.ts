@@ -39,7 +39,7 @@ export const createGame: createGame = (players) => {
 
 	game.playerCommanderCombatants = players.map((player) => {
 		return {
-			"player": player.id,
+			"playerId": player.id,
 			"commander": null
 		}
 	})
@@ -65,7 +65,7 @@ export const getGamesWon: getGamesFromPlayerId = async (playerId) => {
 
 	console.log('playerId' + playerId);
 
-	const games = await GameModel.find({ 'winner.player': playerId });
+	const games = await GameModel.find({ 'winner.playerId': playerId });
 
 	return games;
 
@@ -75,7 +75,7 @@ export const getGamesPlayed: getGamesFromPlayerId = async (playerId) => {
 
 	console.log('playerId' + playerId);
 
-	const games = await GameModel.find({ 'playerCommanderCombatants.player': playerId });
+	const games = await GameModel.find({ 'playerCommanderCombatants.playerId': playerId });
 
 	return games;
 
@@ -87,7 +87,7 @@ export const addCommander: addCommander = async (gameId, playerId, commander: Co
 	if (game) {
 
 		game.playerCommanderCombatants.forEach(combatant => {
-			if (combatant.player != playerId) return;
+			if (combatant.playerId != playerId) return;
 			combatant.commander = commander;
 		});
 
@@ -101,7 +101,7 @@ export const setWinner: setWinner = async (gameId, playerId) => {
 
 	if (game) {
 
-		const winner = game.playerCommanderCombatants.find(combatant => combatant.player === playerId);
+		const winner = game.playerCommanderCombatants.find(combatant => combatant.playerId === playerId);
 		console.log('winner' + winner);
 
 		if (winner) game.winner = winner;

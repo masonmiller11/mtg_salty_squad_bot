@@ -1,6 +1,6 @@
 import {Commander} from './Commander';
 
-export type PlayerCommanderCombatant = {
-	player: string,
+export interface PlayerCommanderCombatant {
+	playerId: string,
 	commander: Commander|null
 }
