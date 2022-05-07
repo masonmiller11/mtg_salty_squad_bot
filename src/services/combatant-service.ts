@@ -22,5 +22,5 @@ export const getPlayerNames: getPlayerNames = async (playerCommanderCombatants) 
 }
 
 export const getPlayerName: getPlayerName = async (playerCommanderCombatant) => {
-	return (await UserService.getUser(playerCommanderCombatant.player)).username;
+	return (await UserService.getUser(playerCommanderCombatant.playerId)).username;
 }

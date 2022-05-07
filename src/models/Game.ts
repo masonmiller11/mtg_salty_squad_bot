@@ -10,7 +10,7 @@ export type Game = {
 const GameSchema = new Schema<Game>({
 	playerCommanderCombatants: [
 		{
-			player: { type: String, required: true },
+			playerId: { type: String, required: true },
 			commander: {
 				type: mongoose.Schema.Types.ObjectId,
 				ref: 'Commander'
@@ -18,7 +18,7 @@ const GameSchema = new Schema<Game>({
 		}
 	],
 	winner: {
-		player: { type: String },
+		playerId: { type: String },
 		commander: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Commander'
