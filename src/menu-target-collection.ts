@@ -1,5 +1,6 @@
 import { Collection } from "discord.js";
-import {MenuTarget} from './models/MenuTarget';
+
+import { MenuTarget } from './models/MenuTarget';
 import assignCommander from "./menu-targets/assign-commander";
 import assignWinner from "./menu-targets/assign-winner";
 import setCommanders from "./menu-targets/set-commanders";
