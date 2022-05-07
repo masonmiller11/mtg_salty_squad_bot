@@ -1,5 +1,6 @@
 import { Client, Intents } from 'discord.js';
-import {config} from 'dotenv';
+import { config } from 'dotenv';
+
 import commandCreate from './src/events/command-create';
 import menuSelecCreate from './src/events/menu-select-create';
 import messageCreate from './src/events/message-create'

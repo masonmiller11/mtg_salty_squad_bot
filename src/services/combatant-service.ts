@@ -5,9 +5,8 @@ type getPlayerNames = (playerCommanderCombatants: PlayerCommanderCombatant[]) =>
 
 type getPlayerName = (playerCommanderCombatant: PlayerCommanderCombatant) => Promise<string>;
 
-
 /**
- * Consumes an array of PlayerCommanderCombatants and returns an array of player names.
+ * Consumes an array of PlayerCommanderCombatants and returns an array of player names wrapped in a promise.
  * @param playerCommanderCombatants 
  * @returns 
  */

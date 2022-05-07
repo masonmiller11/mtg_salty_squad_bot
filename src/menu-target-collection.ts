@@ -6,7 +6,6 @@ import assignWinner from "./menu-targets/assign-winner";
 import setCommanders from "./menu-targets/set-commanders";
 import setWinner from "./menu-targets/set-winner";
 
-
 const menuCollection: Collection<string, MenuTarget> = new Collection();
 
 menuCollection.set(assignCommander.menuData.name, assignCommander);

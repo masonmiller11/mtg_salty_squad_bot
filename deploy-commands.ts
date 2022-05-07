@@ -1,7 +1,8 @@
 import { RESTPostAPIApplicationCommandsJSONBody } from "discord-api-types/v10";
-import commandCollection from './src/command-collection';
 import { REST } from '@discordjs/rest';
 import { Routes } from "discord-api-types/v9";
+
+import commandCollection from './src/command-collection';
 
 require('dotenv').config({ path: './.env' });
 

@@ -36,6 +36,7 @@ const stats: Command = {
 			}
 
 			const gamesWon = await GameService.getGamesWon(player.id);
+			console.log(gamesWon.toString());
 			const gamesPlayed = await GameService.getGamesPlayed(player.id);
 			const percentageWon =  StatsService.getPercentage(gamesWon.length, gamesPlayed.length);
 
