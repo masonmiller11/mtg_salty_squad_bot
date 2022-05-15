@@ -1,7 +1,7 @@
 import { CommanderModel, Commander } from "../models/Commander";
 import { Document, Types } from 'mongoose';
 
-type searchCommanderByName = (name: string) => Promise<(Document<unknown, any, Commander> & Commander & {
+type getCommanderByName = (name: string) => Promise<(Document<unknown, any, Commander> & Commander & {
 	_id: Types.ObjectId;
 }) | null>;
 
@@ -10,8 +10,9 @@ type createCommander = (commanderName: string) =>
 		_id: Types.ObjectId;
 	};
 
-export const searchCommanderByName: searchCommanderByName = async (name) => {
-	return await CommanderModel.findOne({ name: name });
+export const getCommanderByName: getCommanderByName = async (name) => {
+	//Use regex to make query case insensitive. 
+	return await CommanderModel.findOne({ name: { $regex: new RegExp(name, "i") } });
 }
 
 export const createCommander: createCommander = (commanderName) => {
