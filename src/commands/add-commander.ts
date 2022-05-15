@@ -7,7 +7,7 @@ import * as CommanderService from '../services/commander-service';
 type resultsType = { commandersNotSaved: string[], commandersSaved: string[] };
 
 const addCommander: Command = {
-	
+
 	commandData: new SlashCommandBuilder()
 		.setName('add')
 		.setDescription('Add items to database.')
@@ -22,10 +22,12 @@ const addCommander: Command = {
 				.addStringOption(option => option.setName('commander4').setDescription('Enter the commander name here.').setRequired(false))
 				.addStringOption(option => option.setName('commander5').setDescription('Enter the commander name here.').setRequired(false))
 			return subcommand;
-			
+
 		}),
-		
+
 	async executeCommand(interaction: CommandInteraction) {
+
+
 
 		if (interaction.options.getSubcommand() === 'commander') {
 
@@ -36,10 +38,14 @@ const addCommander: Command = {
 				commander && commanders.push(commander);
 			}
 
+			const initialValue: resultsType = {
+				commandersNotSaved: [], commandersSaved: []
+			}
+
 			const results: resultsType = await commanders.reduce(async (accP: Promise<resultsType>, commanderName: string) => {
 
 				const acc = await accP;
-				const commander = await CommanderService.searchCommanderByName(commanderName);
+				const commander = await CommanderService.getCommanderByName(commanderName);
 
 				if (commander?.name.toLowerCase() === commanderName.toLowerCase()) {
 					//We will not save commander, so add to commandersNotSaved.
@@ -51,7 +57,7 @@ const addCommander: Command = {
 					acc['commandersSaved'] = [...(acc['commandersSaved']), newCommander.name];
 					return acc;
 				}
-			}, Promise.resolve({ commandersNotSaved: [], commandersSaved: [] }));
+			}, Promise.resolve(initialValue));
 
 			let response = '';
 
