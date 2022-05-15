@@ -6,6 +6,8 @@ type Command = {
 	executeCommand: (interaction: CommandInteraction) => void;
 }
 
+export type SubCommand = (interaction: CommandInteraction) => Promise<void>
+
 type CommandDataWithOptions = Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
 type BasicCommandData = SlashCommandBuilder;
 type CommandDataWIthSubcommands = SlashCommandSubcommandsOnlyBuilder;
