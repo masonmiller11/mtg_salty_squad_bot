@@ -2,16 +2,16 @@ import { User } from "discord.js";
 import { GameModel, Game } from "../models/Game";
 import { Document, Types } from 'mongoose';
 import { Commander } from '../models/Commander';
+import { GameDocument } from '../models/Game';
+import { CommanderDocument } from '../models/Commander';
 
-type createGame = (players: User[]) =>
-	Document<unknown, Game> & Game & {
-		_id: Types.ObjectId;
-	};
 
-type getAllActive = () =>
-	Promise<(Document<unknown, any, Game> & Game & {
-		_id: Types.ObjectId;
-	})[]>;
+//TODO document type should be somewhere else. Also types should be capitalized per convention.
+
+
+type createGame = (players: User[]) => GameDocument;
+
+type getAllActive = () => Promise<GameDocument[]>;
 
 type getGame = (id: string) => Promise<(Document<unknown, any, Game> & Game & {
 	_id: Types.ObjectId;
@@ -23,9 +23,9 @@ type setWinner = (gameId: string, playerId: string) => void;
 
 type setInactive = (gameId: string) => void;
 
-type getGamesFromPlayerId = (playerId: string) => Promise<(Document<unknown, any, Game> & Game & {
-	_id: Types.ObjectId;
-})[]>;
+type getGamesFromPlayerId = (playerId: string) => Promise<GameDocument[]>;
+
+type getGamesFromCommander = (commander: CommanderDocument) => Promise<GameDocument[]>;
 
 
 /**
@@ -61,21 +61,36 @@ export const getAllActive: getAllActive = async () => {
 	return games;
 }
 
-export const getGamesWon: getGamesFromPlayerId = async (playerId) => {
+export const getGamesWonByPlayer: getGamesFromPlayerId = async (playerId) => {
 
-	console.log('playerId' + playerId);
-
-	const games = await GameModel.find({ 'winner.playerId': playerId });
+	const games = await GameModel.find({ 'winner.playerId': playerId })
+		.populate('winner.commander');
 
 	return games;
 
 }
 
-export const getGamesPlayed: getGamesFromPlayerId = async (playerId) => {
+export const getGamesPlayedByPlayer: getGamesFromPlayerId = async (playerId) => {
 
-	console.log('playerId' + playerId);
+	const games = await GameModel.find({ 'playerCommanderCombatants.playerId': playerId })
+		.populate('playerCommanderCombatants.commander');
 
-	const games = await GameModel.find({ 'playerCommanderCombatants.playerId': playerId });
+	return games;
+
+}
+
+export const getGamesWonByCommander: getGamesFromCommander = async (commander) => {
+
+	const games = await GameModel.find({ 'winner.commander': commander })
+		.populate('winner.commander');
+
+	return games;
+
+}
+
+export const getGamesPlayedByCommander: getGamesFromCommander = async (commander) => {
+
+	const games = await GameModel.find({ 'playerCommanderCombatants.commander': commander });
 
 	return games;
 
