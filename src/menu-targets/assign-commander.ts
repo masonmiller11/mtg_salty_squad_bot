@@ -26,12 +26,12 @@ const assignCommander: MenuTarget = {
 
 			interaction.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
 				.then(async messages => {
-					const commander = await CommanderService.searchCommanderByName(messages.first()!.content);
+					const commander = await CommanderService.getCommanderByName(messages.first()!.content);
 
 					if (commander) GameService.addCommander(data.gameId, data.playerId, commander);
 
 					interaction.followUp(commander ? `Got it! Setting ${messages.first()!.content} as ${user.username}'s commander.` :
-						`Could not find commander: ${messages.first()!.content}`);
+						`Could not find commander: ${messages.first()!.content}. Use "/add commander" to add commander.`);
 
 				})
 				.catch(() => {
