@@ -1,11 +1,14 @@
 import mongoose, { Schema, model, } from 'mongoose';
 import { PlayerCommanderCombatant } from './PlayerCommanderCombatant';
+import { DocumentHelper } from './Document';
 
 export type Game = {
 	playerCommanderCombatants: PlayerCommanderCombatant[],
 	active: boolean,
 	winner: PlayerCommanderCombatant
 }
+
+export type GameDocument = DocumentHelper<Game>;
 
 const GameSchema = new Schema<Game>({
 	playerCommanderCombatants: [
