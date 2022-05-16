@@ -1,11 +1,14 @@
 
 import { CommandInteraction } from "discord.js";
 
-export const interactionReplyError = (errorMessage: string, interaction: CommandInteraction) => {
+type InteractionReplyError = (errorMessage: string, interaction: CommandInteraction) => Promise<void>;
+type LogError = (errorMessage: string) => void;
+
+export const interactionReplyError: InteractionReplyError = async (errorMessage: string, interaction: CommandInteraction) => {
 	logError(errorMessage);
-	interaction.reply(errorMessage);
+	await interaction.reply(errorMessage);
 }
 
-export const logError = (errorMessage:string) => {
+export const logError: LogError = (errorMessage:string) => {
 	console.error(errorMessage);
 }
