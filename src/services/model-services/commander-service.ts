@@ -1,4 +1,4 @@
-import { CommanderModel, Commander } from "../models/Commander";
+import { CommanderModel, Commander, CommanderDocument } from "../../models/Commander";
 import { Document, Types } from 'mongoose';
 
 type getCommanderByName = (name: string) => Promise<(Document<unknown, any, Commander> & Commander & {
