@@ -6,11 +6,17 @@ import * as StatsService from '../../services/stats-service';
 import * as CommanderService from '../../services/model-services/commander-service';
 import * as ErrorService from '../../services/error-service';
 
+
 export const commanderStats: SubCommand = async (interaction: CommandInteraction) => {
 
 	const input = interaction.options.getString('commander');
 
-	const commander = await CommanderService.getCommanderByName(input!);
+	if (!input) {
+		ErrorService.interactionReplyError('An error has occurred. Unable to parse subcommand', interaction);
+		return;
+	}
+
+	const commander = await CommanderService.getCommanderByName(input);
 
 	if (!commander) {
 		console.log('commander is false');
