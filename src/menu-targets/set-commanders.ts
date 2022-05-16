@@ -1,7 +1,7 @@
 import { SelectMenuInteraction, MessageActionRow, MessageSelectMenu } from "discord.js";
 
-import * as GameService from '../services/game-service';
-import * as CombatantService from '../services/combatant-service';
+import * as GameService from '../services/model-services/game-service';
+import * as CombatantService from '../services/model-services/combatant-service';
 import { MenuTarget } from '../models/MenuTarget';
 import { Player } from '../models/Player';
 import { PlayerCommanderCombatant } from '../models/PlayerCommanderCombatant';

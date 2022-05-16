@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction } from "discord.js";
 
 import Command from "../models/Command";
-import * as CommanderService from '../services/commander-service';
+import * as CommanderService from '../services/model-services/commander-service';
 
 type resultsType = { commandersNotSaved: string[], commandersSaved: string[] };
 

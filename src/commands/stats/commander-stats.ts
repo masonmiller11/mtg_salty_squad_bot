@@ -1,9 +1,10 @@
 import { CommandInteraction } from "discord.js";
 
 import { SubCommand } from '../../models/Command';
-import * as GameService from '../../services/game-service';
+import * as GameService from '../../services/model-services/game-service';
 import * as StatsService from '../../services/stats-service';
-import * as CommanderService from '../../services/commander-service';
+import * as CommanderService from '../../services/model-services/commander-service';
+import * as ErrorService from '../../services/error-service';
 
 export const commanderStats: SubCommand = async (interaction: CommandInteraction) => {
 

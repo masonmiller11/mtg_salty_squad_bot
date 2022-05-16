@@ -2,8 +2,8 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, Message, User } from "discord.js";
 
 import Command from "../models/Command";
-import * as GameService from '../services/game-service';
-import * as CommanderService from '../services/commander-service';
+import * as GameService from '../services/model-services/game-service';
+import * as CommanderService from '../services/model-services/commander-service';
 
 
 const playGame: Command = {

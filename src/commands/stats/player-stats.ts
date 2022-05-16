@@ -1,7 +1,7 @@
 import { CommandInteraction, User } from "discord.js";
 
 import { SubCommand } from '../../models/Command';
-import * as GameService from '../../services/game-service';
+import * as GameService from '../../services/model-services/game-service';
 import * as StatsService from '../../services/stats-service';
 import * as CommanderStatsService from '../../services/commander-stats-service';
 

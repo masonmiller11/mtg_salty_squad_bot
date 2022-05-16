@@ -1,5 +1,5 @@
-import { PlayerCommanderCombatant } from '../models/PlayerCommanderCombatant';
-import * as UserService from './user-service';
+import { PlayerCommanderCombatant } from '../../models/PlayerCommanderCombatant';
+import * as UserService from '../user-service';
 
 type getPlayerNames = (playerCommanderCombatants: PlayerCommanderCombatant[]) => Promise<string[]>;
 
