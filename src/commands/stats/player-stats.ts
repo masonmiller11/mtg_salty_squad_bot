@@ -35,21 +35,21 @@ export const playerStats: SubCommand = async (interaction: CommandInteraction) =
 	//This will happen when a player finishes a game without having a commander set.
 	if (commandersSortedByGames.length > 0) {
 
-		response = response + `\n\nMost Played Commanders:\n`;
+		response = response + `\n\n**Most Played Commanders**:\n`;
 		commandersSortedByGames.slice(0, 5).forEach((commanderHistory, i) =>
 			response = response + `#${i + 1} - ${commanderHistory.commander.name}: ${commanderHistory.gamesPlayed} game(s)\n`
 		);
 
 		if (commandersSortedByWins.length > 0) {
 
-			response = response + `\nCommanders With The Most Wins:\n`;
+			response = response + `\n**Commanders With The Most Wins**:\n`;
 			commandersSortedByWins.slice(0, 5).forEach((commanderHistory, i) =>
 				response = response + `#${i + 1} - ${commanderHistory.commander.name}: ${commanderHistory.gamesWon} win(s)\n`
 			);
 
 		}
 
-		response = response + `\nCommanders By Win Percentage:\n`;
+		response = response + `\n**Commanders By Win Percentage**:\n`;
 		commandersSortedByPerc.slice(0, 5).forEach((commanderHistory, i) =>
 			response = response + `#${i + 1} - ${commanderHistory.commander.name}: ${commanderHistory.winPercentage}%\n`);
 
