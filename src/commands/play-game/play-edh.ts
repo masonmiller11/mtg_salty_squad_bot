@@ -30,11 +30,12 @@ const playEDH = async (interaction: CommandInteraction) => {
 	interaction.channel?.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
 		.then(async message => {
 
-			const commandersString = PlayGameService.parseCommmandersFromResponse(message);
+			//Parse response into an array of commander names.
+			const commanderNames = PlayGameService.parseCommmandersFromResponse(message);
 
-			//Confirm same number of commands as players
-			if (!commandersString || commandersString.length !== players.length) {
-				console.error('commander string length: ' + commandersString?.length + 'players length: ' + players.length);
+			//Confirm same number of commands as players. If there's an error, respond.
+			if (!commanderNames || commanderNames.length !== players.length) {
+				console.error('commander string length: ' + commanderNames?.length + 'players length: ' + players.length);
 				interaction.followUp(
 					`There was an issue parsing the response. The number of commanders provided did not match the number of players.`  +
 					`Please use "/set commanders" to assign commanders to players.`
@@ -42,8 +43,7 @@ const playEDH = async (interaction: CommandInteraction) => {
 				return;
 			}
 
-			//Save commanders to players and respond to player.
-			const response = await PlayGameService.saveCommandersAndRespond(players, game, commandersString);
+			const response = await PlayGameService.saveCommandersAndRespond(players, game, commanderNames);
 
 			interaction.followUp(response);
 			

@@ -26,7 +26,7 @@ export const commanderStats: SubCommand = async (interaction: CommandInteraction
 	const gamesPlayed = await GameService.getGamesPlayedByCommander(commander);
 	const percentageWon = StatsService.getPercentage(gamesWon.length, gamesPlayed.length);
 
-	const response = `${commander.name} has won ${gamesWon.length}/${gamesPlayed.length} game(s). Winrate: ${percentageWon}%.`;
+	const response = `**${commander.name}** has won ${gamesWon.length}/${gamesPlayed.length} game(s). Winrate: ${percentageWon}%.`;
 
 	interaction.reply(response);
 
