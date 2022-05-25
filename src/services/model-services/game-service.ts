@@ -1,9 +1,9 @@
 import { User } from "discord.js";
-import { GameModel, Game } from "../models/Game";
+import { GameModel, Game } from "../../models/Game";
 import { Document, Types } from 'mongoose';
-import { Commander } from '../models/Commander';
-import { GameDocument } from '../models/Game';
-import { CommanderDocument } from '../models/Commander';
+import { Commander } from '../../models/Commander';
+import { GameDocument } from '../../models/Game';
+import { CommanderDocument } from '../../models/Commander';
 
 
 //TODO document type should be somewhere else. Also types should be capitalized per convention.

@@ -1,6 +1,6 @@
 import { SelectMenuInteraction } from "discord.js";
 
-import * as GameService from '../services/game-service';
+import * as GameService from '../services/model-services/game-service';
 import * as UserService from '../services/user-service';
 import { MenuTarget } from '../models/MenuTarget';
 import { CombatantMenuData } from '../models/CombatantMenuData'

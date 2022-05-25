@@ -1,9 +1,7 @@
-import { CommanderModel, Commander } from "../models/Commander";
+import { CommanderModel, Commander, CommanderDocument } from "../../models/Commander";
 import { Document, Types } from 'mongoose';
 
-type getCommanderByName = (name: string) => Promise<(Document<unknown, any, Commander> & Commander & {
-	_id: Types.ObjectId;
-}) | null>;
+type getCommanderByName = (name: string) => Promise<CommanderDocument|null>;
 
 type createCommander = (commanderName: string) =>
 	Document<unknown, Commander> & Commander & {

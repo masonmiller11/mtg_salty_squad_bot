@@ -1,9 +1,10 @@
 import { SelectMenuInteraction, MessageActionRow, MessageSelectMenu } from "discord.js";
 
-import * as GameService from '../services/game-service';
-import * as CombatantService from '../services/combatant-service';
+import * as GameService from '../services/model-services/game-service';
+import * as CombatantService from '../services/model-services/combatant-service';
 import { MenuTarget } from '../models/MenuTarget';
 import { Player } from '../models/Player';
+import { PlayerCommanderCombatant } from '../models/PlayerCommanderCombatant';
 
 const setWinner: MenuTarget = {
 
@@ -19,7 +20,7 @@ const setWinner: MenuTarget = {
 
 		if (game) {
 
-			players = await Promise.all(game.playerCommanderCombatants.map(async combatant => (
+			players = await Promise.all(game.playerCommanderCombatants.map(async (combatant: PlayerCommanderCombatant) => (
 				{
 					playerId: combatant.playerId,
 					playerName: await CombatantService.getPlayerName(combatant),

@@ -2,8 +2,8 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, MessageActionRow, MessageSelectMenu } from "discord.js";
 
 import Command from "../models/Command";
-import * as GameService from '../services/game-service';
-import * as CombatantService from '../services/combatant-service';
+import * as GameService from '../services/model-services/game-service';
+import * as CombatantService from '../services/model-services/combatant-service';
 
 const set: Command = {
 

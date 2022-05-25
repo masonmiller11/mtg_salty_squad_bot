@@ -1,7 +1,7 @@
 import { Collection } from "discord.js";
 import Command from './models/Command';
 import addCommander from "./commands/add-commander";
-import playGame from "./commands/play-game";
+import playGame from "./commands/play-game/play-game";
 import set from "./commands/set";
 import stats from "./commands/stats/stats";
 import end from './commands/end-game';

@@ -28,14 +28,13 @@ const stats: Command = {
 
 	async executeCommand(interaction: CommandInteraction) {
 
-		if (interaction.options.getSubcommand() === 'player') {
-
-			playerStats(interaction);
-
-		} else if (interaction.options.getSubcommand() === 'commander') {
-
-			commanderStats(interaction);
-
+		switch (interaction.options.getSubcommand()) {
+			case 'player':
+				playerStats(interaction);
+				break;
+			case 'commander':
+				commanderStats(interaction);
+				break;
 		}
 
 	}
