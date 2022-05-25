@@ -1,4 +1,4 @@
-![Discord Demo](https://media.giphy.com/media/crjjQkPrq77Aux5THe/giphy.gif)
+![Discord Demo](https://media.giphy.com/media/Czh8NVhMLdp1gxNnSm/giphy.gif)
 
 # MTG Salty Bot!
 Hey! Welcome! Enjoy your stay. Any feedback is always appreciated! 
