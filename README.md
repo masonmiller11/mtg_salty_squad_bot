@@ -1,4 +1,3 @@
-![Discord Demo](https://media.giphy.com/media/Czh8NVhMLdp1gxNnSm/giphy.gif)
 
 # MTG Salty Bot!
 Hey! Welcome! Enjoy your stay. Any feedback is always appreciated! 
@@ -7,6 +6,8 @@ Hey! Welcome! Enjoy your stay. Any feedback is always appreciated!
 I enjoy video games. I especially enjoy RPGs and action adventure games. The problem with a lot of older RPGs and JRPGs
 is that they have a lot of missable items. Stuff that if you don't obtain it by a certain point of the game, it's lost
 forever (well until you start a new playthrough). I hate that. 
+
+![Discord Demo](https://media.giphy.com/media/Czh8NVhMLdp1gxNnSm/giphy.gif)
 
 So I wanted to create an app where you could keep track of missables in games. Here's how it works:
 
