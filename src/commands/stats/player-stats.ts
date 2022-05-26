@@ -3,7 +3,7 @@ import { CommandInteraction, User } from "discord.js";
 import { SubCommand } from '../../models/Command';
 import * as GameService from '../../services/model-services/game-service';
 import * as StatsService from '../../services/stats-service';
-import * as CommanderStatsService from '../../services/commander-stats-service';
+import * as CommanderStatsService from './commander-stats-service';
 import * as ErrorService from '../../services/error-service';
 
 export const playerStats: SubCommand = async (interaction: CommandInteraction) => {
@@ -27,7 +27,7 @@ export const playerStats: SubCommand = async (interaction: CommandInteraction) =
 
 	let response = `${player.username} has won ${gamesWon.length}/${gamesPlayed.length} game(s). Winrate: ${percentageWon}%.`;
 
-	const commandersSortedByGames = CommanderStatsService.sortCommanderStatsByPlayedGames(gamesPlayed, player.id);
+	const commandersSortedByGames = CommanderStatsService.sortPlayersCommandersByPlayedGames(gamesPlayed, player.id);
 	const commandersSortedByWins = CommanderStatsService.sortCommanderStatsByWonGames(gamesWon);
 	const commandersSortedByPerc = CommanderStatsService.sortCommanderStatsByPercentageWon(commandersSortedByWins, commandersSortedByGames);
 
