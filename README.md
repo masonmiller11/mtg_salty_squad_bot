@@ -10,8 +10,8 @@ over the internet with [spelltable](https://spelltable.wizards.com/). This is a 
 
 ### Setup
  
-Setting up the bot is pretty simple! Just compile and use ```node index.js``` in the root directory. If you want to skip compiling,
-you can use ```ts-node index.ts```, which is helpful for development.
+Setting up the bot is pretty simple! Just compile and use ```node index.js``` in the root directory. You can skip comiling by
+using  ```ts-node index.ts``` during development.
 
 Aside from that, all you need to do is create a new .env file and replace the values included in the .env.example file.
 
