@@ -3,7 +3,7 @@
 Hey! Welcome! Enjoy your stay. Any feedback is always appreciated! 
 
 ## Project Description
-I enjoy the popular trading card game Magic The Gathering, and I love playing paper magic with friends. Recently we started playing Magic
+I enjoy the popular trading card game Magic: The Gathering, and I love playing paper magic with friends. Recently we started playing Magic
 over the internet with [spelltable](https://spelltable.wizards.com/). This is a simple discord bot to keep track of wins, losses, and other stats for the group.
 
 ![Discord Demo](https://media.giphy.com/media/Czh8NVhMLdp1gxNnSm/giphy.gif)
